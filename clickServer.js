@@ -27,8 +27,8 @@ app.get('/clicks', (req, res) => {
 
 // Load SSL certificate and key
 const options = {
-    key: fs.readFileSync('/path/to/your/private.key'),
-    cert: fs.readFileSync('/path/to/your/certificate.crt')
+    key: fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.crt')
 };
 
 // Create HTTPS server
