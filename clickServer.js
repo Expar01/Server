@@ -1,5 +1,5 @@
 const fs = require('fs');
-const http = require('http');
+const https = require('https');
 const path = require('path');
 const WebSocket = require('ws');
 const express = require('express');
@@ -17,8 +17,14 @@ app.use((req, res, next) => {
     next();
 });
 
-// Create HTTP server
-const server = http.createServer(app);
+// Load self-signed SSL certificate and key for development
+const options = {
+    key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+    cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+};
+
+// Create HTTPS server
+const server = https.createServer(options, app);
 
 // Create WebSocket server
 const wss = new WebSocket.Server({ server });
@@ -56,5 +62,6 @@ function handleGetClicks(ws) {
 }
 
 server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at https://localhost:${port}`);
 });
+
