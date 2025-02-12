@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Load self-signed SSL certificate and key for development
+// Load SSL certificate and key from Certbot
 const options = {
     key: fs.readFileSync('/etc/letsencrypt/live/genpic.ru/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/genpic.ru/fullchain.pem')
