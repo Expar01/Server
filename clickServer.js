@@ -19,8 +19,8 @@ app.use((req, res, next) => {
 
 // Load self-signed SSL certificate and key for development
 const options = {
-    key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-    cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+    key: fs.readFileSync('/etc/letsencrypt/live/genpic.ru/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/genpic.ru/fullchain.pem')
 };
 
 // Create HTTPS server
